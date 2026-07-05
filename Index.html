@@ -49,7 +49,6 @@
     font-size:13px;
     color:var(--muted);
   }
-
   .panel{
     background:var(--panel);
     border-radius:var(--radius);
@@ -57,36 +56,83 @@
     margin-bottom:16px;
     border:1px solid var(--line);
   }
-
-  /* --- 本月總花費（signature element）--- */
-  .hero{
-    text-align:center;
-    padding:26px 20px 22px;
-  }
   .hero .label{
-    font-size:13px;
+    font-size:12px;
     color:var(--muted);
     letter-spacing:0.04em;
   }
   .hero .amount{
     font-family:'Fraunces',serif;
     font-weight:700;
-    font-size:52px;
+    font-size:38px;
     line-height:1.1;
-    margin:4px 0 2px;
+    margin:4px 0 12px;
     font-variant-numeric:tabular-nums;
   }
-  .hero .sub{
+  .hero-list{
+    border-top:1px solid var(--line);
+    padding-top:8px;
+  }
+  .hero-row{
+    display:flex;
+    justify-content:space-between;
     font-size:13px;
+    padding:6px 0;
+  }
+  .hero-row .cat{
+    font-weight:600;
+    margin-right:6px;
+  }
+  .hero-row .meta{
     color:var(--muted);
   }
-
-  /* --- 分類長條圖 --- */
+  .hero-row .amt{
+    font-weight:600;
+    font-variant-numeric:tabular-nums;
+  }
   .breakdown h2, .recent h2, .add-form h2{
     font-family:'Fraunces',serif;
     font-size:16px;
     font-weight:600;
     margin:0 0 14px;
+  }
+  .tab-row{
+    display:flex;
+    gap:6px;
+    margin-bottom:16px;
+  }
+  .tab{
+    flex:1;
+    text-align:center;
+    padding:8px;
+    border-radius:999px;
+    font-size:13px;
+    cursor:pointer;
+    border:1px solid var(--line);
+    background:#FBFAF6;
+    color:var(--ink);
+  }
+  .tab.active{
+    background:var(--accent);
+    border-color:var(--accent);
+    color:#fff;
+  }
+  .period-total{
+    font-size:12px;
+    color:var(--muted);
+    margin-bottom:14px;
+  }
+  .period-total span{
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    font-size:20px;
+    color:var(--ink);
+    margin-left:6px;
+  }
+  .section-label{
+    font-size:12px;
+    color:var(--muted);
+    margin:16px 0 10px;
   }
   .bar-row{
     display:flex;
@@ -98,7 +144,6 @@
   .bar-row .cat-name{
     width:56px;
     flex-shrink:0;
-    color:var(--ink);
   }
   .bar-track{
     flex:1;
@@ -109,9 +154,7 @@
   }
   .bar-fill{
     height:100%;
-    background:var(--accent);
     border-radius:6px;
-    transition:width .4s ease;
   }
   .bar-row .cat-amount{
     width:64px;
@@ -124,8 +167,71 @@
     color:var(--muted);
     font-size:13px;
   }
-
-  /* --- 新增表單 --- */
+  .trend-chart{
+    display:flex;
+    align-items:flex-end;
+    gap:6px;
+    height:90px;
+    margin-top:6px;
+  }
+  .trend-col{
+    flex:1;
+    height:100%;
+    display:flex;
+    flex-direction:column-reverse;
+  }
+  .trend-bar{
+    width:100%;
+    display:flex;
+    flex-direction:column-reverse;
+    border-radius:3px 3px 0 0;
+    overflow:hidden;
+  }
+  .trend-empty{
+    width:100%;
+    height:3px;
+    background:var(--accent-soft);
+    border-radius:2px;
+  }
+  .trend-totals, .trend-labels{
+    display:flex;
+    gap:6px;
+  }
+  .trend-totals div, .trend-labels div{
+    flex:1;
+    text-align:center;
+    font-size:10px;
+  }
+  .trend-totals div{
+    font-weight:600;
+    margin-top:4px;
+  }
+  .trend-labels div{
+    color:var(--muted);
+    line-height:1.4;
+    margin-top:2px;
+  }
+  .legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:14px;
+    padding-top:12px;
+    border-top:1px solid var(--line);
+  }
+  .legend-item{
+    display:flex;
+    align-items:center;
+    gap:5px;
+    font-size:11px;
+    color:var(--muted);
+  }
+  .legend-dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    display:inline-block;
+  }
   .field{
     margin-bottom:14px;
   }
@@ -135,7 +241,7 @@
     color:var(--muted);
     margin-bottom:6px;
   }
-  input[type=number], input[type=date], input[type=text]{
+  input[type=number], input[type=text]{
     width:100%;
     padding:11px 12px;
     border-radius:10px;
@@ -205,8 +311,6 @@
   }
   .status-msg.error{ color:var(--warn); }
   .status-msg.ok{ color:var(--accent); }
-
-  /* --- 最近紀錄 --- */
   .entry-row{
     display:flex;
     justify-content:space-between;
@@ -228,24 +332,6 @@
     font-variant-numeric:tabular-nums;
     font-weight:600;
   }
-
-  .setup-warning{
-    background:#FBEDE7;
-    border:1px solid var(--warn);
-    color:var(--warn);
-    padding:14px 16px;
-    border-radius:12px;
-    font-size:13px;
-    margin-bottom:16px;
-    line-height:1.5;
-  }
-  .setup-warning code{
-    background:rgba(0,0,0,0.06);
-    padding:1px 5px;
-    border-radius:4px;
-  }
-
-  /* --- 首次設定畫面 --- */
   .setup-screen{
     max-width:400px;
     margin:60px auto 0;
@@ -299,9 +385,9 @@
   </header>
 
   <div class="panel hero">
-    <div class="label">本月花費</div>
-    <div class="amount" id="monthTotal">NT$ 0</div>
-    <div class="sub" id="monthCount">本月尚無紀錄</div>
+    <div class="label">今日花費</div>
+    <div class="amount" id="todayTotal">NT$ 0</div>
+    <div class="hero-list" id="todayList"></div>
   </div>
 
   <div class="panel add-form">
@@ -319,10 +405,6 @@
       <div class="method-row" id="methodChips"></div>
     </div>
     <div class="field">
-      <label>日期</label>
-      <input type="date" id="dateInput">
-    </div>
-    <div class="field">
       <label>備註（選填）</label>
       <input type="text" id="noteInput" placeholder="例如：和同事吃午餐">
     </div>
@@ -331,8 +413,22 @@
   </div>
 
   <div class="panel breakdown">
-    <h2>本月分類花費</h2>
-    <div id="breakdownList"></div>
+    <h2>花費分析</h2>
+    <div class="tab-row">
+      <div class="tab active" id="tabWeek">週</div>
+      <div class="tab" id="tabMonth">月</div>
+    </div>
+    <div class="period-total" id="periodTotalLabel">本週合計 <span id="periodTotalAmt">NT$ 0</span></div>
+
+    <div class="section-label">分類花費</div>
+    <div id="catBars"></div>
+
+    <div class="section-label" id="trendSectionLabel">每日花費趨勢</div>
+    <div class="trend-chart" id="trendChart"></div>
+    <div class="trend-totals" id="trendTotals"></div>
+    <div class="trend-labels" id="trendLabels"></div>
+
+    <div class="legend" id="legend"></div>
   </div>
 
   <div class="panel recent">
@@ -347,14 +443,54 @@
 <script>
 const CATEGORIES = ["餐飲","交通","娛樂","居住","購物","醫療","其他"];
 const METHODS = ["現金","金融卡"];
+const CAT_COLORS = {
+  "餐飲":"#B8543A",
+  "交通":"#435A8C",
+  "娛樂":"#9A4570",
+  "居住":"#C79A46",
+  "購物":"#2F8A80",
+  "醫療":"#6B8A55",
+  "其他":"#8C8577"
+};
+const WEEKDAY_LABELS = ["一","二","三","四","五","六","日"];
 
 let entries = [];
 let selectedCategory = CATEGORIES[0];
 let selectedMethod = METHODS[0];
+let currentTab = 'week';
 let SCRIPT_URL = localStorage.getItem('expenseScriptUrl') || '';
 let TOKEN = localStorage.getItem('expenseToken') || '';
 
 const el = (id) => document.getElementById(id);
+
+function pad(n){ return String(n).padStart(2,'0'); }
+
+function taipeiParts(ms){
+  const shifted = new Date((ms !== undefined ? ms : Date.now()) + 8*3600*1000);
+  return {
+    y: shifted.getUTCFullYear(),
+    m: shifted.getUTCMonth()+1,
+    day: shifted.getUTCDate(),
+    h: shifted.getUTCHours(),
+    min: shifted.getUTCMinutes(),
+    sec: shifted.getUTCSeconds(),
+    weekday: shifted.getUTCDay()
+  };
+}
+
+function taipeiTimestampString(){
+  const p = taipeiParts();
+  return p.y+'-'+pad(p.m)+'-'+pad(p.day)+' '+pad(p.h)+':'+pad(p.min)+':'+pad(p.sec);
+}
+
+function dateFromYMD(y,m,d){ return new Date(Date.UTC(y, m-1, d)); }
+function addDays(d,n){ return new Date(d.getTime() + n*86400000); }
+function ymdStr(d){ return d.getUTCFullYear()+'-'+pad(d.getUTCMonth()+1)+'-'+pad(d.getUTCDate()); }
+function mdStr(d){ return (d.getUTCMonth()+1)+'/'+d.getUTCDate(); }
+
+function fmt(n){
+  return "NT$ " + Math.round(n).toLocaleString('zh-TW');
+}
 
 function withToken(url){
   const sep = url.indexOf('?') === -1 ? '?' : '&';
@@ -381,18 +517,10 @@ function initSetupScreen(){
   };
 }
 
-function fmt(n){
-  return "NT$ " + Math.round(n).toLocaleString('zh-TW');
-}
-
-function todayStr(){
-  const d = new Date();
-  return d.toISOString().slice(0,10);
-}
-
 function initUI(){
-  el('todayLabel').textContent = new Date().toLocaleDateString('zh-TW', { month:'long', day:'numeric', weekday:'short' });
-  el('dateInput').value = todayStr();
+  const p = taipeiParts();
+  const wLabel = ["日","一","二","三","四","五","六"][p.weekday];
+  el('todayLabel').textContent = p.m + '月' + p.day + '日週' + wLabel;
 
   const catBox = el('categoryChips');
   CATEGORIES.forEach(cat => {
@@ -419,6 +547,8 @@ function initUI(){
   });
 
   el('submitBtn').onclick = submitEntry;
+  el('tabWeek').onclick = () => setTab('week');
+  el('tabMonth').onclick = () => setTab('month');
   el('resetLink').onclick = () => {
     if(confirm('確定要清除已儲存的網址跟密碼嗎？清除後要重新輸入一次。')){
       localStorage.removeItem('expenseScriptUrl');
@@ -428,6 +558,14 @@ function initUI(){
   };
 
   loadEntries();
+}
+
+function setTab(tab){
+  currentTab = tab;
+  el('tabWeek').classList.toggle('active', tab === 'week');
+  el('tabMonth').classList.toggle('active', tab === 'month');
+  el('trendSectionLabel').textContent = tab === 'week' ? '每日花費趨勢' : '每週花費趨勢';
+  render();
 }
 
 async function loadEntries(){
@@ -447,68 +585,208 @@ async function loadEntries(){
   }
 }
 
-function render(){
-  const now = new Date();
-  const ym = now.toISOString().slice(0,7); // yyyy-mm
+function dateOnly(entry){
+  return (entry.timestamp || '').slice(0,10);
+}
 
-  const monthEntries = entries.filter(e => (e.date || '').slice(0,7) === ym);
-  const total = monthEntries.reduce((s,e) => s + Number(e.amount || 0), 0);
+function timeOnly(entry){
+  return (entry.timestamp || '').slice(11,16);
+}
 
-  el('monthTotal').textContent = fmt(total);
-  el('monthCount').textContent = monthEntries.length
-    ? `共 ${monthEntries.length} 筆紀錄`
-    : '本月尚無紀錄';
-
-  // 分類加總
-  const catTotals = {};
-  monthEntries.forEach(e => {
-    catTotals[e.category] = (catTotals[e.category] || 0) + Number(e.amount || 0);
+function sumByCategory(list){
+  const totals = {};
+  list.forEach(e => {
+    totals[e.category] = (totals[e.category] || 0) + Number(e.amount || 0);
   });
-  const sortedCats = Object.entries(catTotals).sort((a,b) => b[1]-a[1]);
-  const maxVal = sortedCats.length ? sortedCats[0][1] : 1;
+  return totals;
+}
 
-  const breakdownBox = el('breakdownList');
-  breakdownBox.innerHTML = '';
-  if(sortedCats.length === 0){
-    breakdownBox.innerHTML = '<div class="empty-note">本月還沒有花費資料，記下第一筆吧。</div>';
+function renderCatBars(list){
+  const totals = sumByCategory(list);
+  const sorted = Object.entries(totals).sort((a,b) => b[1]-a[1]);
+  const max = sorted.length ? sorted[0][1] : 1;
+  const box = el('catBars');
+  box.innerHTML = '';
+  if(sorted.length === 0){
+    box.innerHTML = '<div class="empty-note">這段期間還沒有花費資料。</div>';
+    return;
+  }
+  sorted.forEach(([cat, val]) => {
+    const row = document.createElement('div');
+    row.className = 'bar-row';
+    row.innerHTML =
+      '<div class="cat-name">' + cat + '</div>' +
+      '<div class="bar-track"><div class="bar-fill" style="width:' + (val/max*100).toFixed(0) + '%;background:' + (CAT_COLORS[cat]||'#999') + ';"></div></div>' +
+      '<div class="cat-amount">' + fmt(val) + '</div>';
+    box.appendChild(row);
+  });
+}
+
+function renderTrend(buckets){
+  const totals = buckets.map(b => Object.values(b.cats).reduce((s,v)=>s+v,0));
+  const maxTotal = Math.max(...totals, 1);
+  const chart = el('trendChart');
+  const totalsBox = el('trendTotals');
+  const labelsBox = el('trendLabels');
+  chart.innerHTML = ''; totalsBox.innerHTML = ''; labelsBox.innerHTML = '';
+  const usedCats = new Set();
+
+  buckets.forEach((b, i) => {
+    const t = totals[i];
+    const col = document.createElement('div');
+    col.className = 'trend-col';
+    if(t === 0){
+      const empty = document.createElement('div');
+      empty.className = 'trend-empty';
+      col.appendChild(empty);
+    } else {
+      const barH = Math.round((t / maxTotal) * 100);
+      const bar = document.createElement('div');
+      bar.className = 'trend-bar';
+      bar.style.height = barH + '%';
+      Object.entries(b.cats).forEach(([cat, val]) => {
+        usedCats.add(cat);
+        const seg = document.createElement('div');
+        seg.style.height = Math.round((val/t)*100) + '%';
+        seg.style.background = CAT_COLORS[cat] || '#999';
+        bar.appendChild(seg);
+      });
+      col.appendChild(bar);
+    }
+    chart.appendChild(col);
+
+    const tl = document.createElement('div');
+    tl.textContent = t;
+    totalsBox.appendChild(tl);
+
+    const ll = document.createElement('div');
+    ll.innerHTML = b.label;
+    labelsBox.appendChild(ll);
+  });
+
+  const legend = el('legend');
+  legend.innerHTML = '';
+  CATEGORIES.forEach(cat => {
+    if(!usedCats.has(cat)) return;
+    const item = document.createElement('div');
+    item.className = 'legend-item';
+    item.innerHTML = '<span class="legend-dot" style="background:' + CAT_COLORS[cat] + ';"></span>' + cat;
+    legend.appendChild(item);
+  });
+}
+
+function getWeekRange(){
+  const p = taipeiParts();
+  const today = dateFromYMD(p.y, p.m, p.day);
+  const weekday = today.getUTCDay();
+  const mondayOffset = weekday === 0 ? -6 : -(weekday - 1);
+  const monday = addDays(today, mondayOffset);
+  return monday;
+}
+
+function renderWeek(){
+  const monday = getWeekRange();
+  const days = [];
+  for(let i=0;i<7;i++){
+    const d = addDays(monday, i);
+    days.push({ start: d, end: d, label: WEEKDAY_LABELS[i] + '<br>' + mdStr(d) });
+  }
+  const buckets = days.map(d => {
+    const ds = ymdStr(d.start);
+    const dayEntries = entries.filter(e => dateOnly(e) === ds);
+    return { label: d.label, cats: sumByCategory(dayEntries) };
+  });
+  const weekEntries = entries.filter(e => {
+    const ds = dateOnly(e);
+    return ds >= ymdStr(monday) && ds <= ymdStr(addDays(monday,6));
+  });
+  renderCatBars(weekEntries);
+  renderTrend(buckets);
+  const total = weekEntries.reduce((s,e)=>s+Number(e.amount||0),0);
+  el('periodTotalLabel').innerHTML = '本週合計 <span id="periodTotalAmt">' + fmt(total) + '</span>';
+}
+
+function renderMonth(){
+  const p = taipeiParts();
+  const monthStart = dateFromYMD(p.y, p.m, 1);
+  const monthEnd = addDays(dateFromYMD(p.y, p.m+1, 1), -1);
+  const buckets = [];
+  let cursor = monthStart;
+  while(cursor.getTime() <= monthEnd.getTime()){
+    const weekday = cursor.getUTCDay();
+    const daysToSunday = weekday === 0 ? 0 : 7 - weekday;
+    let end = addDays(cursor, daysToSunday);
+    if(end.getTime() > monthEnd.getTime()) end = monthEnd;
+    buckets.push({ start: cursor, end: end });
+    cursor = addDays(end, 1);
+  }
+  const bucketData = buckets.map(b => {
+    const s = ymdStr(b.start), e = ymdStr(b.end);
+    const list = entries.filter(en => dateOnly(en) >= s && dateOnly(en) <= e);
+    const label = (s === e) ? mdStr(b.start) : (mdStr(b.start) + '-' + mdStr(b.end));
+    return { label, cats: sumByCategory(list) };
+  });
+  const monthEntries = entries.filter(e => {
+    const ds = dateOnly(e);
+    return ds >= ymdStr(monthStart) && ds <= ymdStr(monthEnd);
+  });
+  renderCatBars(monthEntries);
+  renderTrend(bucketData);
+  const total = monthEntries.reduce((s,e)=>s+Number(e.amount||0),0);
+  el('periodTotalLabel').innerHTML = '本月合計 <span id="periodTotalAmt">' + fmt(total) + '</span>';
+}
+
+function render(){
+  const p = taipeiParts();
+  const today = ymdStr(dateFromYMD(p.y, p.m, p.day));
+  const todayEntries = entries.filter(e => dateOnly(e) === today).sort((a,b) => b.timestamp.localeCompare(a.timestamp));
+  const todayTotal = todayEntries.reduce((s,e)=>s+Number(e.amount||0),0);
+  el('todayTotal').textContent = fmt(todayTotal);
+  const listBox = el('todayList');
+  listBox.innerHTML = '';
+  if(todayEntries.length === 0){
+    listBox.innerHTML = '<div class="empty-note">今天還沒有花費紀錄。</div>';
   } else {
-    sortedCats.forEach(([cat, val]) => {
+    todayEntries.forEach(e => {
       const row = document.createElement('div');
-      row.className = 'bar-row';
-      row.innerHTML = `
-        <div class="cat-name">${cat}</div>
-        <div class="bar-track"><div class="bar-fill" style="width:${(val/maxVal*100).toFixed(0)}%"></div></div>
-        <div class="cat-amount">${fmt(val)}</div>
-      `;
-      breakdownBox.appendChild(row);
+      row.className = 'hero-row';
+      row.innerHTML =
+        '<div><span class="cat">' + e.category + '</span><span class="meta">' + timeOnly(e) + (e.note ? ' · ' + e.note : '') + '</span></div>' +
+        '<div class="amt">' + fmt(e.amount) + '</div>';
+      listBox.appendChild(row);
     });
   }
 
-  // 最近紀錄（全部資料裡取最新 8 筆）
+  if(currentTab === 'week') renderWeek(); else renderMonth();
+
   const recentBox = el('recentList');
   recentBox.innerHTML = '';
-  const recent = [...entries].sort((a,b) => (b.date||'').localeCompare(a.date||'')).slice(0,8);
+  const recent = [...entries].sort((a,b) => (b.timestamp||'').localeCompare(a.timestamp||'')).slice(0,8);
   if(recent.length === 0){
     recentBox.innerHTML = '<div class="empty-note">尚無紀錄。</div>';
   } else {
     recent.forEach(e => {
+      const ts = e.timestamp || '';
+      const display = ts.length >= 16 ? (mdStrFromString(ts) + ' ' + ts.slice(11,16)) : ts;
       const row = document.createElement('div');
       row.className = 'entry-row';
-      row.innerHTML = `
-        <div class="left">
-          <div class="cat">${e.category}</div>
-          <div class="meta">${e.date} · ${e.method}${e.note ? ' · ' + e.note : ''}</div>
-        </div>
-        <div class="amount">${fmt(e.amount)}</div>
-      `;
+      row.innerHTML =
+        '<div class="left"><div class="cat">' + e.category + '</div>' +
+        '<div class="meta">' + display + ' · ' + e.method + (e.note ? ' · ' + e.note : '') + '</div></div>' +
+        '<div class="amount">' + fmt(e.amount) + '</div>';
       recentBox.appendChild(row);
     });
   }
 }
 
+function mdStrFromString(ts){
+  const m = parseInt(ts.slice(5,7),10);
+  const d = parseInt(ts.slice(8,10),10);
+  return m + '/' + d;
+}
+
 async function submitEntry(){
   const amount = parseFloat(el('amountInput').value);
-  const date = el('dateInput').value || todayStr();
   const note = el('noteInput').value.trim();
   const statusMsg = el('statusMsg');
 
@@ -518,7 +796,10 @@ async function submitEntry(){
     return;
   }
 
-  const payload = { date, amount, category: selectedCategory, method: selectedMethod, note, token: TOKEN };
+  const payload = {
+    timestamp: taipeiTimestampString(),
+    amount, category: selectedCategory, method: selectedMethod, note, token: TOKEN
+  };
   const btn = el('submitBtn');
   btn.disabled = true;
   btn.textContent = '記錄中…';
@@ -535,7 +816,7 @@ async function submitEntry(){
     el('noteInput').value = '';
     statusMsg.textContent = '已記下這筆。';
     statusMsg.className = 'status-msg ok';
-    loadEntries(); // 背景同步一次，確保跟表格一致
+    loadEntries();
   }catch(err){
     statusMsg.textContent = '新增失敗，請檢查網路連線後再試一次。';
     statusMsg.className = 'status-msg error';
