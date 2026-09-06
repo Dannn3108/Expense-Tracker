@@ -1142,6 +1142,7 @@ function renderCommentSection(bucket){
   const view = el('commentView');
   const edit = el('commentEdit');
   el('commentStatus').textContent = '';
+  el('commentSaveBtn').disabled = false;
 
   if(hasComment){
     view.style.display = 'block';
